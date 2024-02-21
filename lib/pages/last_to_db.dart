@@ -38,7 +38,7 @@ void checkUserRisk() {
 }
 
 Future<void> insertRecord() async {
-  if (db.text != "") {
+  if (udata.userDbvalue != "") {
     try {
       String uri = "https://atrakarnaaapi.000webhostapp.com/insert_record.php";
       var res = await http.post(Uri.parse(uri), body: {
@@ -56,7 +56,7 @@ Future<void> insertRecord() async {
         "contact": udata.userContact,
         "hours": udata.userhrs,
         "music": udata.userMtype,
-        "decibel": db.text,
+        "decibel": udata.userDbvalue,
         "date": DateFormat('yyyy-MM-dd').format(date!).toString(),
       });
 
@@ -77,7 +77,7 @@ Future<void> insertRecord() async {
 }
 
 Future<void> insertNewuser() async {
-  if (db.text != "") {
+  if (udata.userDbvalue != "") {
     try {
       String uri2 = "https://atrakarnaaapi.000webhostapp.com/table_two.php";
       var res2 = await http.post(Uri.parse(uri2), body: {
@@ -85,7 +85,7 @@ Future<void> insertNewuser() async {
         "contact": udata.userContact,
         "hours": udata.userhrs,
         "music": udata.userMtype,
-        "decibel": db.text,
+        "decibel": udata.userDbvalue,
         "date": DateFormat('yyyy-MM-dd').format(date!).toString(),
       });
 
@@ -133,12 +133,13 @@ class _ToDataBaseState extends State<ToDataBase> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
+                    readOnly: true,
                     maxLength: 3,
                     keyboardType: TextInputType.number,
                     cursorColor: const Color.fromARGB(255, 7, 46, 49),
                     controller: db,
-                    decoration: const InputDecoration(
-                        hintText: "Decibel value",
+                    decoration: InputDecoration(
+                        hintText: udata.userDbvalue.toString(),
                         focusedBorder: InputBorder.none,
                         border: InputBorder.none),
                   ),
@@ -158,7 +159,7 @@ class _ToDataBaseState extends State<ToDataBase> {
                                 BorderRadius.all(Radius.circular(5)))),
                     shadowColor: MaterialStatePropertyAll(Colors.black)),
                 onPressed: () {
-                  if (db.text.isEmpty) {
+                  if (udata.userDbvalue.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text(
@@ -167,15 +168,16 @@ class _ToDataBaseState extends State<ToDataBase> {
                       ),
                     );
                   } else {
-                    if (int.parse(db.text) >= 70 && int.parse(db.text) <= 120) {
+                    if (int.parse(udata.userDbvalue) >= 70 &&
+                        int.parse(udata.userDbvalue) <= 120) {
                       date = DateTime.now();
                       //print(DateFormat('yyyy-MM-dd').format(date!));
                       if ((udata.userhrs.contains("8") &&
-                              int.parse(db.text) >= 90) ||
+                              int.parse(udata.userDbvalue) >= 90) ||
                           (udata.userhrs.contains("4") &&
-                              int.parse(db.text) >= 95) ||
+                              int.parse(udata.userDbvalue) >= 95) ||
                           (udata.userhrs.contains("2") &&
-                              int.parse(db.text) >= 100)) {
+                              int.parse(udata.userDbvalue) >= 100)) {
                         udata.isrisk = "Yes";
                         insertRecord();
                         AutoRouter.of(context).push(const RiskYesRoute());

@@ -4,9 +4,12 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:karna_main/constents/colors.dart';
+import 'package:karna_main/data/userdata.dart';
+import 'package:karna_main/routes/routes_imports.gr.dart';
 import 'package:lottie/lottie.dart';
 
 @RoutePage()
@@ -17,9 +20,11 @@ class GetData extends StatefulWidget {
   State<GetData> createState() => _GetDataState();
 }
 
+final UserData udata = Get.put(UserData());
+
 class _GetDataState extends State<GetData> {
   Timer? timer;
-
+  int secondsElapsed = 0;
   List keyvalue = [];
   List dbvalue = [];
   Future<void> getkey() async {
@@ -63,10 +68,20 @@ class _GetDataState extends State<GetData> {
       getdb();
       timer = Timer.periodic(Duration(seconds: 1), (timer) {
         getdb();
+        secondsElapsed++;
+        if (secondsElapsed >= 10) {
+          timer.cancel();
+        }
       });
     });
 
     super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+    // Cancel the timer when the widget is disposed to prevent memory leaks
+    timer?.cancel();
   }
 
   @override
@@ -104,7 +119,10 @@ class _GetDataState extends State<GetData> {
                       backgroundColor:
                           MaterialStatePropertyAll<Color>(Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      udata.userDbvalue = dbvalue[0]["Db-VALUE"];
+                      AutoRouter.of(context).push(const ToDataBaseRoute());
+                    },
                     child: const Text(
                       "Next",
                       style: TextStyle(color: Colors.black, fontSize: 20),
