@@ -66,7 +66,7 @@ class _SnewDataState extends State<SnewData> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              height: 800,
+              height: 750,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -173,6 +173,27 @@ class _SnewDataState extends State<SnewData> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            const Center(
+              child: Text(
+                "Devloped by",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            const Center(
+              child: Text(
+                "Shivu and Team guided by devi Kannan",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14),
               ),
             ),
           ],

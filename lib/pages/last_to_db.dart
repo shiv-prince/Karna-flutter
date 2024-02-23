@@ -205,6 +205,27 @@ class _ToDataBaseState extends State<ToDataBase> {
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
+              const Center(
+                child: Text(
+                  "Devloped by",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              const Center(
+                child: Text(
+                  "Shivu and Team guided by devi Kannan",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14),
+                ),
+              ),
             ],
           ),
         ),

@@ -63,7 +63,28 @@ class RiskNo extends StatelessWidget {
               width: 350,
               decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage('assets/info.png'))),
-            )
+            ),
+            const Center(
+              child: Text(
+                "Devloped by",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
+            SizedBox(
+              height: 2,
+            ),
+            const Center(
+              child: Text(
+                "Shivu and Team guided by devi Kannan",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14),
+              ),
+            ),
           ],
         ),
       ),

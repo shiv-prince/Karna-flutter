@@ -100,7 +100,7 @@ class _GetDataState extends State<GetData> {
               },
               child: Center(
                   child: Lottie.asset('assets/loading.json',
-                      repeat: true, reverse: false)),
+                      repeat: true, reverse: false, height: 100, width: 100)),
             )
           : Column(
               mainAxisAlignment: MainAxisAlignment.center,
