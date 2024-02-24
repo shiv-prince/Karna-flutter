@@ -162,7 +162,7 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             const Center(
@@ -174,7 +174,7 @@ class _LandingPageState extends State<LandingPage> {
                     fontSize: 18),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             const Center(
