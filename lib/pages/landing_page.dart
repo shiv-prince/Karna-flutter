@@ -60,7 +60,7 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: MyColors.background,
       body: Container(
         height: double.infinity,
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
@@ -163,7 +163,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
             SizedBox(
-              height: 290,
+              height: 100,
             ),
             const Center(
               child: Text(
